@@ -1,79 +1,96 @@
-import React from 'react';
-import data from '../data';
-import Rating from '../components/Rating';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { fetchProductDetails } from '../actions/productActions';
+import Loading from '../components/Loading';
+import ErrorMessage from '../components/ErrorMessage';
+import Rating from '../components/Rating';
 
 const ProductScreen = (props) => {
-  const product = data.products.find(x => x._id === props.match.params.id);
-  console.log(product);
-  if (!product) {
-    return <div> Product Not Found </div>
-  }
+  const dispatch = useDispatch();
+  const productId = props.match.params.id;
+  const productDetails = useSelector(state => state.productDetails);
+  const { loading, error, product } = productDetails;
+
+  useEffect(() => {
+    dispatch(fetchProductDetails(productId));
+  }, [dispatch, productId]);
+  
   return (
     <div>
-      <Link to='/'>Back to results</Link>
-      <div className="row top">
-        <div className="col-2">
-          <img className="large" src={product.image} alt={product.name} ></img>
-        </div>
-        <div className="col-1">
-          <ul>
+      { loading ? (
+        <Loading></Loading>
+      ) : error ? (
+        <ErrorMessage variant='danger'>{error}</ErrorMessage>
+      ) : (
+        <div>
+          <Link to='/'>Back to results</Link>
+          <div className="row top">
+            <div className="col-2">
+              <img className="large" src={product.image} alt={product.name} ></img>
+            </div>
+            <div className="col-1">
+              <ul>
 
-            <li>
-              <h1>{product.name}</h1>
-            </li>
+                <li>
+                  <h1>{product.name}</h1>
+                </li>
 
-            <li>
-              <Rating
-                rating={product.rating}
-                numReviews={product.numReviews}
-              />
-            </li>
+                <li>
+                  <Rating
+                    rating={product.rating}
+                    numReviews={product.numReviews}
+                  />
+                </li>
 
-            <li>
-              Price : ${product.price}
-            </li>
+                <li>
+                  Price : ${product.price}
+                </li>
 
-            <li>
-              Description :
+                <li>
+                  Description :
               <p>{product.description}</p>
-            </li>
+                </li>
 
-          </ul>
-        </div>
-        <div className="col-1">
-          <div className="card card-body">
-            <ul>
+              </ul>
+            </div>
+            <div className="col-1">
+              <div className="card card-body">
+                <ul>
 
-              <li>
-                <div className="row">
-                  <div>Price</div>
-                  <div className="price">${product.price}</div>
-                </div>
-              </li>
+                  <li>
+                    <div className="row">
+                      <div>Price</div>
+                      <div className="price">${product.price}</div>
+                    </div>
+                  </li>
 
-              <li>
-                <div className="row">
-                  <div>Status</div>
-                  <div>
-                    {product.countInStock > 0 ? (
-                      <span className="success">Available</span>
-                    ) : (
-                      <span className="danger">Unavailable</span>
-                    )}
-                  </div>
-                </div>
-              </li>
+                  <li>
+                    <div className="row">
+                      <div>Status</div>
+                      <div>
+                        {product.countInStock > 0 ? (
+                          <span className="success">Available</span>
+                        ) : (
+                          <span className="danger">Unavailable</span>
+                        )}
+                      </div>
+                    </div>
+                  </li>
 
-              <li>
-                <button className="primary block">Add to cart</button>
-              </li>
+                  <li>
+                    <button className="primary block">Add to cart</button>
+                  </li>
 
-            </ul>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
+
+
   );
 }
 
