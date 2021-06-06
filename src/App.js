@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom';
+import CartScreen from './screens/CartScreen';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 
@@ -20,6 +21,7 @@ function App() {
         </div>
       </header>
       <main>
+        <Route path='/cart/:id?' component={CartScreen} exact></Route>
         <Route path='/product/:id' component={ProductScreen} exact></Route>
         <Route path='/' component={HomeScreen} exact></Route>
       </main>
