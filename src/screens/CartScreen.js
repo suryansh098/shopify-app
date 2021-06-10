@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ErrorMessage from '../components/ErrorMessage';
-import { addToCart } from '../actions/cartActions';
+import { addToCart, removeFromCart } from '../actions/cartActions';
 
 const CartScreen = (props) => {
   const productId = props.match.params.id;
@@ -20,20 +20,20 @@ const CartScreen = (props) => {
     }
   }, [dispatch, productId, qty]);
 
-  const removeFromCartHandler = () => {
-    // delete func
-  }
+  const removeFromCartHandler = (id) => {
+    dispatch(removeFromCart(id));
+  };
 
   const checkoutHandler = () => {
     props.history.push('/signin?redirect=shipping');
-  }
+  };
 
   return (
     <div className="row top">
       <div className="col-2">
         <h1>Shopping Cart</h1>
         { cartItems.length === 0 ? <ErrorMessage>
-          Cart is empty. <Link to="/">Go to Shop</Link>
+          Cart is empty. <Link to="/">View products.</Link>
         </ErrorMessage>
         :
         (
