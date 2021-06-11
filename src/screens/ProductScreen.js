@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchProductDetails } from '../actions/productActions';
 import Loading from '../components/Loading';
-import ErrorMessage from '../components/ErrorMessage';
+import MessageBox from '../components/MessageBox';
 import Rating from '../components/Rating';
 
 const ProductScreen = (props) => {
@@ -26,7 +26,7 @@ const ProductScreen = (props) => {
       { loading ? (
         <Loading></Loading>
       ) : error ? (
-        <ErrorMessage variant='danger'>{error}</ErrorMessage>
+        <MessageBox variant='danger'>{error}</MessageBox>
       ) : (
         <div>
           <Link to='/'>Back to results</Link>

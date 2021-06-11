@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Loading = (props) => {
+const MessageBox = (props) => {
     return (
         <div className={`alert alert-${props.variant || 'info'}`}>
             {props.children}
@@ -8,4 +8,4 @@ const Loading = (props) => {
     )
 }
 
-export default Loading;
+export default MessageBox;

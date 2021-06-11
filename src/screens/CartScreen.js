@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import ErrorMessage from '../components/ErrorMessage';
+import MessageBox from '../components/MessageBox';
 import { addToCart, removeFromCart } from '../actions/cartActions';
 
 const CartScreen = (props) => {
@@ -32,9 +32,9 @@ const CartScreen = (props) => {
     <div className="row top">
       <div className="col-2">
         <h1>Shopping Cart</h1>
-        { cartItems.length === 0 ? <ErrorMessage>
+        { cartItems.length === 0 ? <MessageBox>
           Cart is empty. <Link to="/">View products.</Link>
-        </ErrorMessage>
+        </MessageBox>
         :
         (
           <ul>
