@@ -4,7 +4,6 @@ html {
     font-size: 62.5%;
     box-sizing: border-box;
 }
-
 body {
     margin: 0;
     height: 100vh;
@@ -13,11 +12,9 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
 #root {
   height: 100%;
 }
-
 .grid-container {
     display: grid;
     grid-template-areas: 
@@ -28,17 +25,14 @@ body {
     grid-template-rows: 5rem 1fr 5rem;
     height: 100%;
 }
-
 header {
     grid-area: header;
     background-color: #203040;
 }
-
 main {
     grid-area: main;
     padding: 1rem;
 }
-
 footer {
     grid-area: footer;
     background-color: #203040;
@@ -47,33 +41,27 @@ footer {
 
 /* Common Classes */
 h1 {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
     padding: 1rem 0;
 }
-
-h1 {
+h2 {
     font-size: 1.6rem;
     padding: 1rem 0;
 }
-
 a {
     text-decoration: none;
 }
-
 a:hover {
     color: #ff8000;
 }
-
 ul {
     padding: 0;
     margin: 0;
     list-style: none;
 }
-
 li {
     margin-top: 1rem;
 }
-
 input,
 select,
 textarea,
@@ -86,23 +74,19 @@ button {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
 button {
     background-color: #f8f8f8;
     cursor: pointer;
 }
-
 input:hover,
 select:hover,
 textarea:hover,
 button:hover {
     border: 0.1rem solid #404040;
 }
-
 button.primary {
     background-color: #f0c040;
 }
-
 button.block {
     width: 100%;
 }
@@ -112,13 +96,11 @@ header a{
     color: #fff;
     padding: 1rem;
 }
-
 a.logo {
     color: #fff;
     font-size: 3rem;
     font-weight: bold;
 }
-
 .badge {
     background-color: #f02020;
     color: #fff;
@@ -127,30 +109,24 @@ a.logo {
     font-size: 1.4rem;
     margin-left: 0.2rem;
 }
-
 .row {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
 }
-
 .row.center {
     justify-content: center;
 }
-
 .row.top {
     align-items: flex-start;
 }
-
 .col-1 {
     flex: 1 1 25rem;
 }
-
 .col-2 {
     flex: 2 1 50rem;
 }
-
 .min-30 {
     min-width: 30rem;
 }
@@ -159,17 +135,14 @@ a.logo {
 img {
     border-radius: 0.6rem;
 }
-
 img.small {
     max-width: 5rem;
     width: 100%;
 }
-
 img.medium {
     max-width: 29rem;
     width: 100%;
 }
-
 img.large {
     width: 100%;
 }
@@ -181,48 +154,42 @@ img.large {
     border-radius: 0.6rem;
     margin: 1rem;
 }
-
 .card-body {
     padding: 1rem;
 }
-
 .card-body > * {
     margin-bottom: 0.5rem;
 }
-
 .rating span{
     color: #f0c040;
     margin: 0.05rem 0.1rem;
 }
-
 .rating span:last-child {
     color: #111;
 }
-
 .price {
     font-size: 2rem;
 }
 
 /* Alert */
+.loading {
+    display: block !important;
+}
 .success {
     color: #20a020;
 }
-
 .danger {
     color: #a02020;
 }
-
 .alert {
     padding: 1rem;
     border: 0.1rem solid transparent;
     border-radius: 0.6rem;
 }
-
 .alert-info {
     color: #2020a0;
     background-color: #e0e0ff;
 }
-
 .alert-danger {
     color: #a02020;
     background-color: #ffe0e0e0;

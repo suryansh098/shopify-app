@@ -42,7 +42,7 @@ const SigninScreen = (props) => {
                 </div>
 
                 <div>
-                    <label htmlFor="email">Email Address</label>
+                    <label htmlFor="email">Email Address :</label>
                     <input 
                         type="email" 
                         id="email" 
@@ -53,7 +53,7 @@ const SigninScreen = (props) => {
                 </div>
 
                 <div>
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password">Password :</label>
                     <input 
                         type="password" 
                         id="password" 
@@ -73,7 +73,7 @@ const SigninScreen = (props) => {
                 <div>
                     <label />
                     <div>
-                        Didn't have an  account? <Link to="/register">Create your account</Link>
+                        Didn't have an  account? <Link to={`/register?redirect=${redirect}`}>Create your account</Link>
                     </div>
                 </div>
 
