@@ -5,7 +5,7 @@ import Loading from '../components/Loading';
 import MessageBox from '../components/MessageBox';
 import { register } from '../actions/userActions';
 
-const SigninScreen = (props) => {
+const RegisterScreen = (props) => {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -111,4 +111,4 @@ const SigninScreen = (props) => {
   )
 }
 
-export default SigninScreen;
+export default RegisterScreen;
