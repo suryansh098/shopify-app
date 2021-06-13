@@ -45,8 +45,9 @@ h1 {
     padding: 1rem 0;
 }
 h2 {
-    font-size: 1.6rem;
+    font-size: 2rem;
     padding: 1rem 0;
+    border-bottom: 1px solid #d4d4d4;
 }
 a {
     text-decoration: none;
@@ -90,6 +91,9 @@ button.primary {
 button.block {
     width: 100%;
 }
+.ma-1 {
+    margin-bottom: 1rem;
+}
 
 /* Header */
 header a{
@@ -120,6 +124,9 @@ a.logo {
 }
 .row.top {
     align-items: flex-start;
+}
+.row > div {
+    margin-top: 1rem;
 }
 .col-1 {
     flex: 1 1 25rem;

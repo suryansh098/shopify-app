@@ -27,7 +27,7 @@ const PaymentScreen = (props) => {
           <h1>Payment Method</h1>
         </div>
         <div>
-          <div>
+          <div className="ma-1">
             <input 
               type="radio" 
               name="paymentMethod" 
@@ -40,7 +40,7 @@ const PaymentScreen = (props) => {
             <label htmlFor="paypal">PayPal</label>
           </div>
 
-          <div>
+          <div className="ma-1">
             <input 
               type="radio" 
               name="paymentMethod" 
