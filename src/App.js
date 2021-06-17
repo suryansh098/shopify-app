@@ -30,48 +30,48 @@ function App() {
 
   return (
     <Router>
-    <div className="grid-container">
-      <header className="row">
-        <div>
-          <Link className="logo" to="/">shopify</Link>
-        </div>
-        <div>
-          <Link to="/cart">Cart
-          {cartItems.length > 0 && (
-            <span className="badge">{cartItems.length}</span>
-          )}
-          </Link>
-          {
-            userInfo ? (
-              <div className="dropdown">
-                <Link to='#'>
-                  { userInfo.name } <i className="fa fa-caret-down"></i>
-                </Link>
-                <ul className="dropdown-content">
-                  <Link to="#signout" onClick={signoutHandler}>
-                    Sign Out
+      <div className="grid-container">
+        <header className="row">
+          <div>
+            <Link className="logo" to="/">shopify</Link>
+          </div>
+          <div>
+            <Link to="/cart">Cart
+            {cartItems.length > 0 && (
+              <span className="badge">{cartItems.length}</span>
+            )}
+            </Link>
+            {
+              userInfo ? (
+                <div className="dropdown">
+                  <Link to='#'>
+                    { userInfo.name } <i className="fa fa-caret-down"></i>
                   </Link>
-                </ul>
-              </div>
-            ) : (
-              <Link to="/signin">Sign in</Link>
-            )
-          }
-          
-        </div>
-      </header>
-      <main>
-        <Route path='/cart/:id?' component={CartScreen} exact></Route>
-        <Route path='/product/:id' component={ProductScreen} exact></Route>
-        <Route path="/signin" component={SigninScreen} exact></Route>
-        <Route path="/register" component={RegisterScreen} exact></Route>
-        <Route path='/shipping' component={ShippingScreen} exact></Route>
-        <Route path='/payment' component={PaymentScreen} exact></Route>
-        <Route path='/placeorder' component={PlaceOrderScreen} exact></Route>
-        <Route path='/' component={HomeScreen} exact></Route>
-      </main>
-      <footer className="row center">All rights reserved</footer>
-    </div>
+                  <ul className="dropdown-content">
+                    <Link to="#signout" onClick={signoutHandler}>
+                      Sign Out
+                    </Link>
+                  </ul>
+                </div>
+              ) : (
+                <Link to="/signin">Sign in</Link>
+              )
+            }
+            
+          </div>
+        </header>
+        <main>
+          <Route path='/cart/:id?' component={CartScreen} exact></Route>
+          <Route path='/product/:id' component={ProductScreen} exact></Route>
+          <Route path="/signin" component={SigninScreen} exact></Route>
+          <Route path="/register" component={RegisterScreen} exact></Route>
+          <Route path='/shipping' component={ShippingScreen} exact></Route>
+          <Route path='/payment' component={PaymentScreen} exact></Route>
+          <Route path='/placeorder' component={PlaceOrderScreen} exact></Route>
+          <Route path='/' component={HomeScreen} exact></Route>
+        </main>
+        <footer className="row center">All rights reserved</footer>
+      </div>
     </Router>
   );
 }
