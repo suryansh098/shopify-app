@@ -53,6 +53,7 @@ const RegisterScreen = (props) => {
             type="name"
             id="name"
             placeholder="Enter name"
+            autoComplete="username"
             required
             onChange={(event) => setName(event.target.value)}
           />
@@ -64,6 +65,7 @@ const RegisterScreen = (props) => {
             type="email"
             id="email"
             placeholder="Enter email"
+            autoComplete="useremail"
             required
             onChange={(event) => setEmail(event.target.value)}
           />
@@ -75,6 +77,7 @@ const RegisterScreen = (props) => {
             type="password"
             id="password"
             placeholder="Enter password"
+            autoComplete="new-password"
             required
             onChange={(event) => setPassword(event.target.value)}
           />
@@ -86,6 +89,7 @@ const RegisterScreen = (props) => {
             type="password"
             id="confirmPassword"
             placeholder="Enter password again"
+            autoComplete="new-password"
             required
             onChange={(event) => setConfirmPassword(event.target.value)}
           />

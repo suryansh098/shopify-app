@@ -47,6 +47,7 @@ const SigninScreen = (props) => {
             type="email"
             id="email"
             placeholder="Enter email"
+            autoComplete="useremail"
             required
             onChange={(event) => setEmail(event.target.value)}
           />
@@ -58,6 +59,7 @@ const SigninScreen = (props) => {
             type="password"
             id="password"
             placeholder="Enter password"
+            autoComplete="current-password"
             required
             onChange={(event) => setPassword(event.target.value)}
           />
