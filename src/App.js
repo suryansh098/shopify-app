@@ -5,6 +5,7 @@ import {
   Route,
   Link
 } from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute';
 import { signout } from './actions/userActions';
 import CartScreen from './screens/CartScreen';
 import HomeScreen from './screens/HomeScreen';
@@ -55,7 +56,7 @@ function App() {
                       <Link to="/profile">Profile</Link>
                     </li>
                     <li>
-                      <Link to="/orderhistory">Order History</Link>
+                      <Link to="/orderhistory">Orders</Link>
                     </li>
                     <li>
                     <Link to="#signout" onClick={signoutHandler}>
@@ -76,12 +77,12 @@ function App() {
           <Route path='/product/:id' component={ProductScreen} exact></Route>
           <Route path="/signin" component={SigninScreen} exact></Route>
           <Route path="/register" component={RegisterScreen} exact></Route>
-          <Route path='/shipping' component={ShippingScreen} exact></Route>
-          <Route path='/payment' component={PaymentScreen} exact></Route>
-          <Route path='/placeorder' component={PlaceOrderScreen} exact></Route>
-          <Route path='/order/:id' component={OrderScreen} exact></Route>
-          <Route path='/orderhistory' component={OrderHistoryScreen} exact></Route>
-          <Route path='/profile' component={ProfileScreen} exact></Route>
+          <PrivateRoute path='/shipping' component={ShippingScreen} exact></PrivateRoute>
+          <PrivateRoute path='/payment' component={PaymentScreen} exact></PrivateRoute>
+          <PrivateRoute path='/placeorder' component={PlaceOrderScreen} exact></PrivateRoute>
+          <PrivateRoute path='/order/:id' component={OrderScreen} exact></PrivateRoute>
+          <PrivateRoute path='/orderhistory' component={OrderHistoryScreen} exact></PrivateRoute>
+          <PrivateRoute path='/profile' component={ProfileScreen} exact></PrivateRoute>
           <Route path='/' component={HomeScreen} exact></Route>
         </main>
         <footer className="row center">All rights reserved</footer>
