@@ -8,7 +8,7 @@ import Loading from '../components/Loading';
 import MessageBox from '../components/MessageBox';
 import { ORDER_PAY_RESET } from '../contants/orderConstants';
 
-export const OrderScreen = (props) => {
+const OrderScreen = (props) => {
 
   const orderId = props.match.params.id;
   const [ sdkReady, setSdkReady ] = useState(false);
@@ -211,4 +211,6 @@ export const OrderScreen = (props) => {
     </div>
   )
   )
-}
+};
+
+export default OrderScreen;
