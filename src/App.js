@@ -5,6 +5,7 @@ import {
   Route,
   Link
 } from 'react-router-dom';
+import AdminRoute from './components/AdminRoute';
 import PrivateRoute from './components/PrivateRoute';
 import { signout } from './actions/userActions';
 import CartScreen from './screens/CartScreen';
@@ -18,6 +19,7 @@ import { PlaceOrderScreen } from './screens/PlaceOrderScreen';
 import { OrderScreen } from './screens/OrderScreen';
 import OrderHistoryScreen from './screens/OrderHistoryScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import ProductListScreen from './screens/ProductListScreen';
 
 function App() {
 
@@ -96,16 +98,24 @@ function App() {
           </div>
         </header>
         <main>
+          {/* Common Routes */}
           <Route path='/cart/:id?' component={CartScreen} exact></Route>
           <Route path='/product/:id' component={ProductScreen} exact></Route>
           <Route path="/signin" component={SigninScreen} exact></Route>
           <Route path="/register" component={RegisterScreen} exact></Route>
+
+          {/* Private Routes */}
           <PrivateRoute path='/shipping' component={ShippingScreen} exact></PrivateRoute>
           <PrivateRoute path='/payment' component={PaymentScreen} exact></PrivateRoute>
           <PrivateRoute path='/placeorder' component={PlaceOrderScreen} exact></PrivateRoute>
           <PrivateRoute path='/order/:id' component={OrderScreen} exact></PrivateRoute>
           <PrivateRoute path='/orderhistory' component={OrderHistoryScreen} exact></PrivateRoute>
           <PrivateRoute path='/profile' component={ProfileScreen} exact></PrivateRoute>
+
+          {/* Admin Routes */}
+          <AdminRoute path='/productlist' component={ProductListScreen}></AdminRoute>
+
+          {/* Home Route */}
           <Route path='/' component={HomeScreen} exact></Route>
         </main>
         <footer className="row center">All rights reserved</footer>
