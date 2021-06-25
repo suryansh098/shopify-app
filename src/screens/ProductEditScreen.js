@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchProductDetails } from '../actions/productActions';
+import { fetchProductDetails, updateProduct } from '../actions/productActions';
 import Loading from '../components/Loading';
 import MessageBox from '../components/MessageBox';
+import { PRODUCT_UPDATE_RESET } from '../contants/productConstants';
 
 const ProductEditScreen = (props) => {
 
@@ -18,9 +19,22 @@ const ProductEditScreen = (props) => {
   const productDetails = useSelector(state => state.productDetails);
   const { loading, error, product } = productDetails;
 
+  const productUpdate = useSelector(state => state.productUpdate);
+  const {
+    loading: loadingUpdate,
+    error: errorUpdate,
+    success: successUpdate
+  } = productUpdate;
+
   const dispatch = useDispatch();
   useEffect(() => {
-    if(!product || product._id !== productId) {
+
+    if(successUpdate) {
+      props.history.push('/productlist');
+    }
+
+    if(!product || product._id !== productId || successUpdate) {
+      dispatch({ type: PRODUCT_UPDATE_RESET });
       dispatch(fetchProductDetails(productId));
     } else {
       setName(product.name);
@@ -31,19 +45,38 @@ const ProductEditScreen = (props) => {
       setBrand(product.brand);
       setDescription(product.description);
     }
-  }, [product, productId, dispatch]);
+
+  }, [product, productId, dispatch, successUpdate, props.history]);
 
   const submitHandler = (event) => {
     event.preventDefault();
-    // TODO: dispatch update product
-  }
+
+    dispatch(
+      updateProduct({
+        _id: productId,
+        name,
+        price,
+        image,
+        category,
+        brand,
+        countInStock,
+        description
+      })
+    );
+
+  };
 
   return (
     <div>
       <form className="form" onSubmit={submitHandler}>
+        
         <div>
           <h1>Edit product : {productId}</h1>
         </div>
+
+        {loadingUpdate && <Loading></Loading>}
+        {errorUpdate && <MessageBox variant="danger">{errorUpdate}</MessageBox>}
+
         { loading ? (
           <Loading></Loading>
         ) : error ? (
@@ -62,7 +95,7 @@ const ProductEditScreen = (props) => {
             </div>
 
             <div>
-              <label htmlFor="price">Price</label>
+              <label htmlFor="price">Price ($)</label>
               <input 
                 type="text" 
                 id="price"

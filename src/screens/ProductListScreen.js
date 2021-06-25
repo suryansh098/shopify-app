@@ -60,7 +60,7 @@ const ProductListScreen = (props) => {
               <tr>
                 <th>PRODUCT ID</th>
                 <th>NAME</th>
-                <th>PRICE</th>
+                <th>PRICE ($)</th>
                 <th>CATEGORY</th>
                 <th>BRAND</th>
                 <th>ACTIONS</th>
