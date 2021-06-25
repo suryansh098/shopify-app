@@ -21,6 +21,7 @@ import OrderScreen from './screens/OrderScreen';
 import OrderHistoryScreen from './screens/OrderHistoryScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import ProductListScreen from './screens/ProductListScreen';
+import ProductEditScreen from './screens/ProductEditScreen';
 
 function App() {
 
@@ -114,7 +115,8 @@ function App() {
           <PrivateRoute path='/profile' component={ProfileScreen} exact></PrivateRoute>
 
           {/* Admin Routes */}
-          <AdminRoute path='/productlist' component={ProductListScreen}></AdminRoute>
+          <AdminRoute path='/productlist' component={ProductListScreen} exact></AdminRoute>
+          <AdminRoute path='/product/:id/edit' component={ProductEditScreen} exact></AdminRoute>
 
           {/* Home Route */}
           <Route path='/' component={HomeScreen} exact></Route>
