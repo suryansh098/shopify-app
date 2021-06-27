@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import Axios from 'axios';
 import { fetchProductDetails, updateProduct } from '../actions/productActions';
 import Loading from '../components/Loading';
 import MessageBox from '../components/MessageBox';
@@ -65,6 +66,34 @@ const ProductEditScreen = (props) => {
     );
 
   };
+  
+  const [loadingUpload, setLoadingUpload] = useState(false);
+  const [errorUpload, setErrorUpload] = useState('');
+
+  const userSignin = useSelector(state => state.userSignin);
+  const { userInfo } = userSignin;
+  const uploadFileHandler = async (event) => {
+
+    const file = event.target.files[0];
+    const formData = new FormData();
+    formData.append('image', file);
+    setLoadingUpload(true);
+
+    try {
+      const { data } = await Axios.post('/api/uploads', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${userInfo.token}`
+        }
+      });
+
+      setImage(data);
+      setLoadingUpload(false);
+    } catch(err) {
+      setErrorUpload(err.message);
+      setLoadingUpload(false);
+    }
+  };
 
   return (
     <div>
@@ -114,6 +143,20 @@ const ProductEditScreen = (props) => {
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
               />
+            </div>
+
+            <div>
+              <label htmlFor="imageFile">Image File</label>
+              <input 
+                type="file" 
+                id="imageFile"
+                label="Choose Image"
+                onChange={uploadFileHandler}
+              />
+              {loadingUpload && <Loading></Loading>}
+              {errorUpload && (
+                <MessageBox variant="danger">{errorUpload}</MessageBox>
+              )}
             </div>
 
             <div>
