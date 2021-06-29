@@ -5,6 +5,7 @@ import {
   Route,
   Link
 } from 'react-router-dom';
+
 import AdminRoute from './components/AdminRoute';
 import PrivateRoute from './components/PrivateRoute';
 import { signout } from './actions/userActions';
@@ -22,6 +23,7 @@ import OrderHistoryScreen from './screens/OrderHistoryScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import ProductListScreen from './screens/ProductListScreen';
 import ProductEditScreen from './screens/ProductEditScreen';
+import OrderListScreen from './screens/OrderListScreen';
 
 function App() {
 
@@ -117,6 +119,7 @@ function App() {
           {/* Admin Routes */}
           <AdminRoute path='/productlist' component={ProductListScreen} exact></AdminRoute>
           <AdminRoute path='/product/:id/edit' component={ProductEditScreen} exact></AdminRoute>
+          <AdminRoute path='/orderlist' component={OrderListScreen} exact></AdminRoute>
 
           {/* Home Route */}
           <Route path='/' component={HomeScreen} exact></Route>

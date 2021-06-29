@@ -11,7 +11,10 @@ import {
   ORDER_PAY_FAIL,
   ORDER_LIST_REQUEST,
   ORDER_LIST_FAIL,
-  ORDER_LIST_SUCCESS
+  ORDER_LIST_SUCCESS,
+  ALL_ORDER_LIST_REQUEST,
+  ALL_ORDER_LIST_SUCCESS,
+  ALL_ORDER_LIST_FAIL
 } from "../contants/orderConstants"
 import { CART_EMPTY } from '../contants/cartConstants';
 
@@ -150,6 +153,37 @@ export const listOrder = () => async(dispatch, getState) => {
     dispatch({ 
       type: ORDER_LIST_FAIL,
       payload: message
-    })
+    });
+  }
+};
+
+export const listAllOrders = () => async (dispatch, getState) => {
+  dispatch({
+    type: ALL_ORDER_LIST_REQUEST
+  });
+  const {userSignin: { userInfo }} = getState();
+
+  try {
+
+    const { data } = await Axios.get('/api/orders/', {
+      headers: { Authorization: `Bearer ${userInfo.token}` }
+    });
+
+    dispatch({
+      type: ALL_ORDER_LIST_SUCCESS,
+      payload: data
+    });
+
+  } catch(err) {
+
+    const message = 
+      err.response && err.response.data.message
+        ? err.response.data.message
+        : err.message;
+
+    dispatch({ 
+      type: ALL_ORDER_LIST_FAIL,
+      payload: message
+    });
   }
 }
