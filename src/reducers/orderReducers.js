@@ -6,6 +6,9 @@ import {
   ORDER_CREATE_REQUEST, 
   ORDER_CREATE_RESET, 
   ORDER_CREATE_SUCCESS, 
+  ORDER_DELETE_FAIL, 
+  ORDER_DELETE_REQUEST, 
+  ORDER_DELETE_SUCCESS, 
   ORDER_DETAILS_FAIL, 
   ORDER_DETAILS_REQUEST, 
   ORDER_DETAILS_SUCCESS, 
@@ -15,7 +18,8 @@ import {
   ORDER_PAY_FAIL, 
   ORDER_PAY_REQUEST, 
   ORDER_PAY_RESET, 
-  ORDER_PAY_SUCCESS 
+  ORDER_PAY_SUCCESS,
+  ORDER_DELETE_RESET 
 } from "../contants/orderConstants";
 
 export const orderCreateReducer = (state = {}, action) => {
@@ -154,3 +158,33 @@ export const allOrdersListReducer = (state = { orders: [] }, action) => {
   }
 
 };
+
+export const orderDeleteReducer = (state = {}, action) => {
+
+  switch(action.type) {
+
+    case ORDER_DELETE_REQUEST:
+      return {
+        loading: true
+      };
+
+    case ORDER_DELETE_SUCCESS:
+      return {
+        loading: false,
+        success: true
+      };
+
+    case ORDER_DELETE_FAIL:
+      return {
+        loading: false,
+        error: action.payload
+      };
+
+    case ORDER_DELETE_RESET:
+      return {};
+
+    default:
+      return state;
+
+  }
+}

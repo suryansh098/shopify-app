@@ -14,7 +14,10 @@ import {
   ORDER_LIST_SUCCESS,
   ALL_ORDER_LIST_REQUEST,
   ALL_ORDER_LIST_SUCCESS,
-  ALL_ORDER_LIST_FAIL
+  ALL_ORDER_LIST_FAIL,
+  ORDER_DELETE_REQUEST,
+  ORDER_DELETE_SUCCESS,
+  ORDER_DELETE_FAIL
 } from "../contants/orderConstants"
 import { CART_EMPTY } from '../contants/cartConstants';
 
@@ -186,4 +189,36 @@ export const listAllOrders = () => async (dispatch, getState) => {
       payload: message
     });
   }
-}
+};
+
+export const deleteOrder = (orderId) => async (dispatch, getState) => {
+  dispatch({
+    type: ORDER_DELETE_REQUEST,
+    payload: orderId
+  });
+  const {userSignin: {userInfo}} = getState();
+
+  try {
+
+    const { data } = await Axios.delete(`/api/orders/${orderId}`, {
+      headers: { Authorization: `Bearer ${userInfo.token}` }
+    });
+
+    dispatch({
+      type: ORDER_DELETE_SUCCESS,
+      payload: data
+    });
+
+  } catch(err) {
+
+    const message = 
+      err.response && err.response.data.message
+        ? err.response.data.message
+        : err.message;
+
+    dispatch({ 
+      type: ORDER_DELETE_FAIL,
+      payload: message
+    });
+  }
+};
