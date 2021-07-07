@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { detailsUser, updateUserProfile } from '../actions/userActions';
 import Loading from '../components/Loading';
 import MessageBox from '../components/MessageBox';
-import { USER_UPDATE_PROFILE_RESET } from '../contants/userConstants';
+import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
 
 const ProfileScreen = () => {
 
@@ -12,6 +12,7 @@ const ProfileScreen = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
+  const { userInfo } = useSelector(state => state.userSignin);
 
   const userDetails = useSelector(state => state.userDetails);
   const { loading, error, user } = userDetails;
@@ -27,12 +28,12 @@ const ProfileScreen = () => {
   useEffect(() => {
     if(!user) {
       dispatch({ type: USER_UPDATE_PROFILE_RESET});
-      dispatch(detailsUser());
+      dispatch(detailsUser(userInfo._id));
     } else {
       setName(user.name);
       setEmail(user.email);
     }
-  }, [dispatch, user]);
+  }, [dispatch, user, userInfo]);
 
 
   const submitHandler = (event) => {

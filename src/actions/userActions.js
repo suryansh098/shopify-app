@@ -16,10 +16,13 @@ import {
   USER_SIGNIN_REQUEST, 
   USER_SIGNIN_SUCCESS, 
   USER_SIGNOUT, 
+  USER_UPDATE_FAIL, 
   USER_UPDATE_PROFILE_FAIL, 
   USER_UPDATE_PROFILE_REQUEST, 
-  USER_UPDATE_PROFILE_SUCCESS 
-} from '../contants/userConstants';
+  USER_UPDATE_PROFILE_SUCCESS, 
+  USER_UPDATE_REQUEST,
+  USER_UPDATE_SUCCESS
+} from '../constants/userConstants';
 
 export const signin = (email, password) => async (dispatch) => {
 
@@ -84,10 +87,10 @@ export const signout = () => (dispatch) => {
   dispatch({
     type: USER_SIGNOUT
   });
-  // document.location.location.href = '/signin';
+  document.location.href = '/signin';
 };
 
-export const detailsUser = () => async (dispatch, getState) => {
+export const detailsUser = (userId) => async (dispatch, getState) => {
   dispatch({
     type: USER_DETAILS_REQUEST
   });
@@ -95,7 +98,7 @@ export const detailsUser = () => async (dispatch, getState) => {
 
   try {
 
-    const { data } = await Axios.get(`/api/users/${userInfo._id}`, {
+    const { data } = await Axios.get(`/api/users/${userId}`, {
       headers: { Authorization: `Bearer ${userInfo.token}` }
     });
 
@@ -152,6 +155,39 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
 
     dispatch({
       type: USER_UPDATE_PROFILE_FAIL,
+      payload: message
+    });
+
+  }
+};
+
+export const updateUser = (user) => async (dispatch, getState) => {
+
+  dispatch({
+    type: USER_UPDATE_REQUEST,
+    payload: user
+  });
+  const { userSignin: {userInfo}} = getState();
+
+  try {
+    
+    const { data } = await Axios.put(`/api/users/${user._id}`, user, {
+      headers: { Authorization: `Bearer ${userInfo.token}` }
+    });
+
+    dispatch({
+      type: USER_UPDATE_SUCCESS,
+      payload: data
+    });
+
+  } catch(err) {
+
+    const message = err.response && err.response.data.message
+      ? err.response.data.message
+      : err.message;
+
+    dispatch({
+      type: USER_UPDATE_FAIL,
       payload: message
     });
 

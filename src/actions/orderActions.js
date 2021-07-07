@@ -21,8 +21,8 @@ import {
   ORDER_DELIVER_REQUEST,
   ORDER_DELIVER_SUCCESS,
   ORDER_DELIVER_FAIL
-} from "../contants/orderConstants"
-import { CART_EMPTY } from '../contants/cartConstants';
+} from "../constants/orderConstants"
+import { CART_EMPTY } from '../constants/cartConstants';
 
 export const createOrder = (order) => async (dispatch, getState) => {
   dispatch({

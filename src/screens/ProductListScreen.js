@@ -10,7 +10,7 @@ import MessageBox from '../components/MessageBox';
 import { 
   PRODUCT_CREATE_RESET,
   PRODUCT_DELETE_RESET
-} from '../contants/productConstants';
+} from '../constants/productConstants';
 
 const ProductListScreen = (props) => {
   const productList = useSelector(state => state.productList);

@@ -6,7 +6,7 @@ import { PayPalButton } from 'react-paypal-button-v2';
 import { deliverOrder, detailsOrder, payOrder } from '../actions/orderActions';
 import Loading from '../components/Loading';
 import MessageBox from '../components/MessageBox';
-import { ORDER_DELIVER_RESET, ORDER_PAY_RESET } from '../contants/orderConstants';
+import { ORDER_DELIVER_RESET, ORDER_PAY_RESET } from '../constants/orderConstants';
 
 const OrderScreen = (props) => {
 

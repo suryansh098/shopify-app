@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteOrder, listAllOrders } from '../actions/orderActions';
 import Loading from '../components/Loading';
 import MessageBox from '../components/MessageBox';
-import { ORDER_DELETE_RESET } from '../contants/orderConstants';
+import { ORDER_DELETE_RESET } from '../constants/orderConstants';
 
 const OrderListScreen = (props) => {
 

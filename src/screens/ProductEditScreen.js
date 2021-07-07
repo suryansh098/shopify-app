@@ -4,7 +4,7 @@ import Axios from 'axios';
 import { fetchProductDetails, updateProduct } from '../actions/productActions';
 import Loading from '../components/Loading';
 import MessageBox from '../components/MessageBox';
-import { PRODUCT_UPDATE_RESET } from '../contants/productConstants';
+import { PRODUCT_UPDATE_RESET } from '../constants/productConstants';
 
 const ProductEditScreen = (props) => {
 
