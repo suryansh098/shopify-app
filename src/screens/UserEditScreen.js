@@ -1,23 +1,23 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { detailsUser, updateUser } from '../actions/userActions';
-import Loading from '../components/Loading';
-import MessageBox from '../components/MessageBox';
-import { USER_UPDATE_RESET } from '../constants/userConstants';
+import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { detailsUser, updateUser } from "../actions/userActions";
+import Loading from "../components/Loading";
+import MessageBox from "../components/MessageBox";
+import { USER_UPDATE_RESET } from "../constants/userConstants";
 
 const UserEditScreen = (props) => {
   const userId = props.match.params.id;
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [isSeller, setIsSeller] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
 
-  const userDetails = useSelector(state => state.userDetails);
+  const userDetails = useSelector((state) => state.userDetails);
   const { loading, error, user } = userDetails;
 
-  const userUpdate = useSelector(state => state.userUpdate);
+  const userUpdate = useSelector((state) => state.userUpdate);
   const {
     loading: loadingUpdate,
     error: errorUpdate,
@@ -28,9 +28,9 @@ const UserEditScreen = (props) => {
   useEffect(() => {
     if (successUpdate) {
       dispatch({
-        type: USER_UPDATE_RESET
+        type: USER_UPDATE_RESET,
       });
-      props.history.push('/userlist');
+      props.history.push("/userlist");
     }
     if (!user) {
       dispatch(detailsUser(userId));
@@ -44,78 +44,84 @@ const UserEditScreen = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    dispatch(updateUser({
-      _id: userId,
-      name,
-      email,
-      isSeller,
-      isAdmin
-    }));
+    dispatch(
+      updateUser({
+        _id: userId,
+        name,
+        email,
+        isSeller,
+        isAdmin,
+      })
+    );
   };
 
   return (
-    <div>
-      <form className="form" onSubmit={submitHandler}>
-        <div>
-          <h1>Edit User {name}</h1>
-          {loadingUpdate && <Loading></Loading>}
-          {errorUpdate && (<MessageBox variant="danger">{errorUpdate}</MessageBox>)}
-        </div>
+    <div className="max-width grid-center">
+      <div className="card card-body">
+        <form className="form" onSubmit={submitHandler}>
+          <div>
+            <h1>Edit User {name}</h1>
+            {loadingUpdate && <Loading></Loading>}
+            {errorUpdate && (
+              <MessageBox variant="danger">{errorUpdate}</MessageBox>
+            )}
+          </div>
 
-        {loading ? (
-          <Loading></Loading>
-        ) : error ? (
-          <MessageBox varinat="danger">{error}</MessageBox>
-        ) : (
-          <>
-            <div>
-              <label htmlFor="name">Name</label>
-              <input 
-                type="text" 
-                id="name" 
-                placeholder="Enter name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="email">Email</label>
-              <input 
-                type="email" 
-                id="email" 
-                placeholder="Enter email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="isSeller">Seller</label>
-              <input 
-                type="checkbox" 
-                id="isSeller" 
-                value={isSeller}
-                onChange={(e) => setIsSeller(e.target.checked)}
-              />
-            </div>
-            <div>
-              <label htmlFor="isAdmin">Admin</label>
-              <input 
-                type="checkbox" 
-                id="isAdmin" 
-                value={isAdmin}
-                onChange={(e) => setIsAdmin(e.target.checked)}
-              />
-            </div>
-            <div>
-              <button type="submit" className="primary">
-                Update
-              </button>
-            </div>
-          </>
-        )}
-      </form>
+          {loading ? (
+            <Loading></Loading>
+          ) : error ? (
+            <MessageBox varinat="danger">{error}</MessageBox>
+          ) : (
+            <>
+              <div>
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="Enter name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Enter email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="isSeller">Seller</label>
+                <input
+                  type="checkbox"
+                  id="isSeller"
+                  value={isSeller}
+                  onChange={(e) => setIsSeller(e.target.checked)}
+                />
+              </div>
+              <div>
+                <label htmlFor="isAdmin">Admin</label>
+                <input
+                  type="checkbox"
+                  id="isAdmin"
+                  value={isAdmin}
+                  onChange={(e) => setIsAdmin(e.target.checked)}
+                />
+              </div>
+              <div>
+                <button type="submit" className="primary">
+                  Update
+                </button>
+              </div>
+            </>
+          )}
+        </form>
+      </div>
     </div>
-  )
+  );
 };
 
 export default UserEditScreen;

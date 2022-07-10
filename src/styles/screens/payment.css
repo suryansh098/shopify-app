@@ -1,0 +1,11 @@
+.payment-method {
+  width: 100%;
+  margin: auto;
+}
+
+@media screen and (min-width: 768px) {
+  .payment-method {
+    width: max-content;
+    min-width: 50rem;
+  }
+}

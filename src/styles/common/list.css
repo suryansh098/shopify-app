@@ -1,0 +1,13 @@
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+li {
+  margin-bottom: 2rem;
+}
+
+.cart-price li {
+  margin-top: 2rem;
+}

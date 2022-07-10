@@ -1,0 +1,32 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table thead {
+  background-color: var(--light-purple);
+  color: var(--light);
+}
+
+.table tbody tr {
+  background-color: var(--light);
+}
+
+.table tbody tr:nth-of-type(odd){
+  background-color: #97c1;
+}
+
+.table td,
+.table th {
+  text-align: center;
+  border: 0.1rem solid #e4e4e4;
+  padding: 0.5rem;
+}
+
+.table th {
+  padding: 1rem;
+}
+
+.table button {
+  margin: 0 0.2rem;
+}

@@ -1,0 +1,27 @@
+.product-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-desc>strong {
+  text-transform: uppercase;
+  color: var(--dark);
+}
+
+.product-desc>p {
+  margin-top: 0.7rem;
+  color: var(--secondary);
+}
+
+.cart-item {
+  position: relative;
+}
+
+.delete-btn {
+  border: none;
+  background: none;
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+}

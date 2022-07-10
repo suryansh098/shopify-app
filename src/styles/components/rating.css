@@ -1,0 +1,20 @@
+.rating {
+  background-color: white;
+  padding: 0.5rem 1rem;
+  width: fit-content;
+}
+
+.rating span {
+  color: var(--dark);
+  font-weight: 500;
+}
+
+.rating span:first-child {
+  border-right: 1px solid var(--dark);
+  padding-right: 0.7rem;
+}
+
+.rating span:last-child {
+  font-weight: 400;
+  padding-left: 0.7rem;
+}

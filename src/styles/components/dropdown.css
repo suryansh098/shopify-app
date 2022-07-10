@@ -1,0 +1,23 @@
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 4rem;
+  right: 0;
+  min-width: 12rem;
+  padding: 1rem;
+  z-index: 1;
+  background-color: var(--dark-teal);
+  border-radius: 0.6rem;
+  animation: appear 0.3s;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, 
+  rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+@keyframes appear {
+  from { opacity: 0.2; }
+  to { opacity: 1}
+}

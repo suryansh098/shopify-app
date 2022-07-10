@@ -1,0 +1,27 @@
+/* common styles */
+@import "./common/classes.css";
+@import "./common/card.css";
+@import "./common/image.css";
+@import "./common/heading.css";
+@import "./common/list.css";
+@import "./common/form.css";
+
+/* components styles */
+@import "./components/header.css";
+@import "./components/dropdown.css";
+@import "./components/price.css";
+@import "./components/checkout-steps.css";
+@import "./components/loading.css";
+@import "./components/message-box.css";
+@import "./components/product.css";
+@import "./components/quantity.css";
+@import "./components/rating.css";
+@import "./components/table.css";
+
+/* screen styles */
+@import "./screens/signin.css";
+@import "./screens/signup.css";
+@import "./screens/shipping.css";
+@import "./screens/payment.css";
+@import "./screens/profile.css";
+@import "./screens/product-edit.css";

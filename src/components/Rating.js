@@ -1,67 +1,20 @@
-import React from 'react'
+import React from "react";
 
 const Rating = (props) => {
-  const { rating, numReviews } = props;
+  const { rating, numReviews, size = "sm" } = props;
+  const reviews =
+    numReviews < 1000 ? numReviews : `${(numReviews / 1000).toFixed(1)}k`;
   return (
     <div className="rating">
       <span>
-        <i 
-          className={
-            rating >= 1 
-            ? "fa fa-star" 
-            : rating >= 0.5 
-            ? "fa fa-star-half-alt" 
-            : "fa fa-star-o"
-          }
-        ></i>
+        <strong>{rating}</strong>{" "}
+        <i className="fas fa-star" style={{ color: "var(--light-teal)" }}></i>
       </span>
       <span>
-        <i 
-          className={
-            rating >= 2 
-            ? "fa fa-star" 
-            : rating >= 1.5 
-            ? "fa fa-star-half-alt" 
-            : "fa fa-star-o"
-          }
-        ></i>
+        <strong>{reviews}</strong> {size === "lg" && "Ratings"}
       </span>
-      <span>
-        <i 
-          className={
-            rating >= 3 
-            ? "fa fa-star" 
-            : rating >= 2.5 
-            ? "fa fa-star-half-alt" 
-            : "fa fa-star-o"
-          }
-        ></i>
-      </span>
-      <span>
-        <i 
-          className={
-            rating >= 4 
-            ? "fa fa-star" 
-            : rating >= 3.5 
-            ? "fa fa-star-half-alt" 
-            : "fa fa-star-o"
-          }
-        ></i>
-      </span>
-      <span>
-        <i 
-          className={
-            rating === 5 
-            ? "fa fa-star" 
-            : rating >= 4.5 
-            ? "fa fa-star-half-alt" 
-            : "fa fa-star-o"
-          }
-        ></i>
-      </span>
-      <span> ({numReviews}) </span>
     </div>
-  )
-}
+  );
+};
 
 export default Rating;

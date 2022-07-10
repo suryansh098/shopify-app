@@ -1,91 +1,87 @@
-import Axios from 'axios';
-import { 
-  PRODUCT_CREATE_FAIL, 
-  PRODUCT_CREATE_REQUEST, 
-  PRODUCT_CREATE_SUCCESS, 
-  PRODUCT_DELETE_FAIL, 
-  PRODUCT_DELETE_REQUEST, 
-  PRODUCT_DELETE_SUCCESS, 
-  PRODUCT_DETAILS_FAIL, 
-  PRODUCT_DETAILS_REQUEST, 
-  PRODUCT_DETAILS_SUCCESS, 
-  PRODUCT_LIST_FAIL, 
-  PRODUCT_LIST_REQUEST, 
-  PRODUCT_LIST_SUCCESS, 
-  PRODUCT_UPDATE_FAIL, 
-  PRODUCT_UPDATE_REQUEST, 
-  PRODUCT_UPDATE_SUCCESS 
-} from '../constants/productConstants';
+import axios from "axios";
+import {
+  PRODUCT_CREATE_FAIL,
+  PRODUCT_CREATE_REQUEST,
+  PRODUCT_CREATE_SUCCESS,
+  PRODUCT_DELETE_FAIL,
+  PRODUCT_DELETE_REQUEST,
+  PRODUCT_DELETE_SUCCESS,
+  PRODUCT_DETAILS_FAIL,
+  PRODUCT_DETAILS_REQUEST,
+  PRODUCT_DETAILS_SUCCESS,
+  PRODUCT_LIST_FAIL,
+  PRODUCT_LIST_REQUEST,
+  PRODUCT_LIST_SUCCESS,
+  PRODUCT_UPDATE_FAIL,
+  PRODUCT_UPDATE_REQUEST,
+  PRODUCT_UPDATE_SUCCESS,
+} from "../constants/productConstants";
 
 export const listProducts = () => async (dispatch) => {
   dispatch({
-    type: PRODUCT_LIST_REQUEST
+    type: PRODUCT_LIST_REQUEST,
   });
   try {
-    const { data } = await Axios.get('/api/products');
+    const { data } = await axios.get("/api/products");
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
-      payload: data
+      payload: data,
     });
   } catch (err) {
     dispatch({
       type: PRODUCT_LIST_FAIL,
-      payload: err.message
-    })
+      payload: err.message,
+    });
   }
 };
 
 export const fetchProductDetails = (productId) => async (dispatch) => {
   dispatch({
     type: PRODUCT_DETAILS_REQUEST,
-    payload: productId
+    payload: productId,
   });
 
   try {
-    const { data } = await Axios.get(`/api/products/${productId}`);
+    const { data } = await axios.get(`/api/products/${productId}`);
     dispatch({
       type: PRODUCT_DETAILS_SUCCESS,
-      payload: data
+      payload: data,
     });
-  }
-  catch (err) {
+  } catch (err) {
     dispatch({
       type: PRODUCT_DETAILS_FAIL,
       payload:
         err.response && err.response.data.message
           ? err.response.data.message
-          : err.message
+          : err.message,
     });
   }
 };
 
 export const createProduct = () => async (dispatch, getState) => {
   dispatch({
-    type: PRODUCT_CREATE_REQUEST
+    type: PRODUCT_CREATE_REQUEST,
   });
   const {
-    userSignin: { userInfo }
+    userSignin: { userInfo },
   } = getState();
 
   try {
-
-    const { data } = await Axios.post(
-      '/api/products',
+    const { data } = await axios.post(
+      "/api/products",
       {},
       {
         headers: {
-          Authorization: `Bearer ${userInfo.token}`
-        }
+          Authorization: `Bearer ${userInfo.token}`,
+        },
       }
     );
 
     dispatch({
       type: PRODUCT_CREATE_SUCCESS,
-      payload: data.product
+      payload: data.product,
     });
-
   } catch (err) {
-
     const message =
       err.response && err.response.data.message
         ? err.response.data.message
@@ -93,34 +89,34 @@ export const createProduct = () => async (dispatch, getState) => {
 
     dispatch({
       type: PRODUCT_CREATE_FAIL,
-      payload: message
+      payload: message,
     });
-    
   }
 };
 
 export const updateProduct = (product) => async (dispatch, getState) => {
   dispatch({
     type: PRODUCT_UPDATE_REQUEST,
-    payload: product
+    payload: product,
   });
   const {
-    userSignin: { userInfo}
+    userSignin: { userInfo },
   } = getState();
 
   try {
-
-    const { data } = await Axios.put(`/api/products/${product._id}`, product, {
-      headers: { Authorization: `Bearer ${userInfo.token}` }
-    });
+    const { data } = await axios.put(
+      `http://localhost:5000/api/products/${product._id}`,
+      product,
+      {
+        headers: { Authorization: `Bearer ${userInfo.token}` },
+      }
+    );
 
     dispatch({
       type: PRODUCT_UPDATE_SUCCESS,
-      payload: data
+      payload: data,
     });
-
-  } catch(err) {
-    
+  } catch (err) {
     const message =
       err.response && err.response.data.message
         ? err.response.data.message
@@ -128,33 +124,29 @@ export const updateProduct = (product) => async (dispatch, getState) => {
 
     dispatch({
       type: PRODUCT_UPDATE_FAIL,
-      payload: message
+      payload: message,
     });
-    
   }
 };
 
 export const deleteProduct = (productId) => async (dispatch, getState) => {
   dispatch({
     type: PRODUCT_DELETE_REQUEST,
-    payload: productId
+    payload: productId,
   });
   const {
-    userSignin: { userInfo}
+    userSignin: { userInfo },
   } = getState();
 
   try {
-
-    const { data } = await Axios.delete(`/api/products/${productId}`, {
-      headers : { Authorization: `Bearer ${userInfo.token}` }
+    const { data } = await axios.delete(`/api/products/${productId}`, {
+      headers: { Authorization: `Bearer ${userInfo.token}` },
     });
     dispatch({
       type: PRODUCT_DELETE_SUCCESS,
-      payload: data
+      payload: data,
     });
-
-  } catch(err) {
-    
+  } catch (err) {
     const message =
       err.response && err.response.data.message
         ? err.response.data.message
@@ -162,8 +154,7 @@ export const deleteProduct = (productId) => async (dispatch, getState) => {
 
     dispatch({
       type: PRODUCT_DELETE_FAIL,
-      payload: message
+      payload: message,
     });
-    
   }
 };

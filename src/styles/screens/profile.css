@@ -1,0 +1,6 @@
+@media screen and (min-width: 768px) {
+  .profile {
+    min-width: 50rem;
+    min-height: 53rem;
+  }
+}

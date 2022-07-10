@@ -1,0 +1,23 @@
+.price {
+  font-size: 2.5rem;
+  color: var(--dark);
+  margin-bottom: 0;
+}
+
+.mrp {
+  text-decoration: line-through;
+  padding-inline: 1rem;
+  color: var(--secondary);
+}
+
+.discount {
+  font-weight: 500;
+  color: #ff905a;
+}
+
+.price-info {
+  margin-top: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #03a685;
+}

@@ -1,0 +1,28 @@
+.success {
+  color: var(--success);
+}
+
+.danger {
+  color: var(--danger);
+}
+
+.alert {
+  padding: 1rem;
+  border: 0.1rem solid transparent;
+  border-radius: 0.6rem;
+}
+
+.alert-info {
+  color: var(--info);
+  background-color: #e0e0ff;
+}
+
+.alert-danger {
+  color: var(--danger);
+  background-color: #ffe0e0;
+}
+
+.alert-success {
+  color: var(--success);
+  background-color: #e0ffe0;
+}
