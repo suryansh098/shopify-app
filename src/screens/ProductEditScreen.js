@@ -5,9 +5,9 @@ import { fetchProductDetails, updateProduct } from "../actions/productActions";
 import Loading from "../components/Loading";
 import MessageBox from "../components/MessageBox";
 import { PRODUCT_UPDATE_RESET } from "../constants/productConstants";
-import sampleImage from "../logo192.png";
+import sampleImage from "../sample.png";
 
-const SAMPLE_IMAGE = "logo192.png";
+const SAMPLE_IMAGE = "sample-image";
 
 const ProductEditScreen = (props) => {
   const productId = props.match.params.id;
